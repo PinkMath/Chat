@@ -62,7 +62,7 @@ def receive_connections():
         clients.append(client)
         usernames[client] = username
 
-        print(f"[{timestamp()}] {username} joined from ---")
+        print(f"[{timestamp()}] {username} joined from {address[0]}")
         broadcast(f"{username} joined the chat!".encode(), sender=None)
 
         thread = threading.Thread(target=handle_client, args=(client,))
