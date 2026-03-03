@@ -5,18 +5,24 @@ A simple terminal-based chat application for your local network, built with Pyth
 ## Features
 
 ✅ Real-time chat over LAN
+
 ✅ Colored usernames for each user
+
 ✅ Timestamps for each message [HH:MM]
+
 ✅ Multi-line code blocks using /code
+
 ✅ Graceful exit with /exit
+
 ✅ Auto-scroll terminal display
+
 ✅ Join/leave notifications in the server console
+
 ✅ Clean, Discord-like layout
 
-## Screenshots
+## Screenshot
 
-
-
+<img width="1915" height="1042" alt="2026-03-03-042546_hyprshot" src="https://github.com/user-attachments/assets/36c3de06-311e-4d40-b838-cc7b35526337" />
 
 ## Requirements
 
