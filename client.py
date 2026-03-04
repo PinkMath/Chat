@@ -6,7 +6,7 @@ from blessed import Terminal
 from datetime import datetime
 
 # -------------------- CONFIG --------------------
-HOST = '192.168.1.220'  # Change to the server's hoster IP
+HOST = '192.168.x.xxx'  # Change to the server's hoster IP
 PORT = 5000 # The PORT need to be the same as in the server
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
