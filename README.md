@@ -1,64 +1,104 @@
-## LAN Terminal Chat
+# Local Terminal Chat
 
-A simple terminal-based chat application for your local network, built with Python. Features include colored usernames, timestamps, multi-line code blocks (/code), and Discord-style chat layout — all in the terminal.
+A simple **terminal-based chat application** for local networks, inspired by Discord but ultra-lightweight and clean.  
+Supports multiple chat rooms (including password-protected), file and folder sharing, code sharing with syntax coloring, and more — all in your terminal!
+
+---
 
 ## Features
 
-✅ Real-time chat over LAN
+- Terminal-based client and server with clean UI  
+- Multiple chat rooms with `/create <room> [password]` (server only)  
+- Join rooms with `/join <room> [password]`  
+- List available rooms with `/rooms`  
+- Leave rooms with `/leave`  
+- Colored usernames for easy distinction  
+- Share code snippets with `/code` (multi-line, ending with `/end`), displayed in cyan color  
+- Send files (`/file <path>`) and folders (`/folder <path>`) as zipped archives  
+- Download last received file or folder with `/download` (saved to system Downloads folder)  
+- Exit cleanly with `/exit`  
+- Cross-platform (Windows & Linux)
 
-✅ Colored usernames for each user
+---
 
-✅ Timestamps for each message [HH:MM]
+## Getting Started
 
-✅ Multi-line code blocks using /code
+### Requirements
 
-✅ Graceful exit with /exit
+- Python 3.7+  
+- [colorama](https://pypi.org/project/colorama/) (optional, improves color support on Windows)
 
-✅ Auto-scroll terminal display
+Install dependencies (optional):
 
-✅ Join/leave notifications in the server console
-
-✅ Clean, Discord-like layout
-
-## Screenshot
-
-<img width="1915" height="1042" alt="2026-03-03-042546_hyprshot" src="https://github.com/user-attachments/assets/36c3de06-311e-4d40-b838-cc7b35526337" />
-
-## Requirements
-
-- Python 3.8+
-- blessed (pip install blessed)
-
-## Installation
-
-1. Clone the repository:
 ```bash
-git clone https://github.com/PinkMath/Chat.git
-cd Chat
+pip install colorama
 ```
 
-2. Install depencies:
+### Running the server
+
+1. Run the server:
 ```bash
-pip install blessed
+python async_server.py
 ```
 
-## Usage
-1. Start the server
-```bash
-python server.py
+2. Use the server console to create rooms:
+```plain
+/create <room_name>
+/create <room_name> <password>
 ```
-- The server listens on `0.0.0.0:5000 by` default.
-- Logs client joins and disconnections.
+- Rooms without password are public (🌐), with password are locked (🔒).
 
-2. Start the client
+### Running the Client
+
+1. Run the client:
 ```bash
-python client.py
+python async_client.py
 ```
-- Enter a username when prompted.
-- Type messages and press Enter to send.
-- Use commands:
+
+2. Enter the server IP and your username when prompted.
+3. Use commands inside the client:
 
 Command | Description
 --- | ---
-/exit | Exit the chat gracefully
-/code | Enter multi-line mode; end with `/end`
+/rooms | List available rooms
+/join <room_name> [password] | Join a room (with password if needed)
+/leave | Leave current room
+/code | Start code input mode; end with `/end`
+/file <path> | Send a file
+/folder <path> | Send a folder (zipped automatically)
+/download | Download last received file/folder
+/exit | Disconnect from the server
+
+## How It Works
+
+- When you join a room, the terminal clears and shows the room name as a header.
+
+- Incoming messages show username in color.
+
+- Code blocks appear in bright cyan for easy reading.
+
+- Files and folders can be shared and downloaded easily.
+
+- Only one active room per client at a time.
+
+- You cannot chat unless you have joined a room.
+
+## Project Structure
+
+- `async_server.py` — Server application managing clients, rooms, and commands.
+
+- `async_client` — Client application connecting to the server, sending/receiving messages and files.
+
+## Notes
+
+- The server must be running and accessible to clients.
+
+- Passwords are stored in plaintext in memory for simplicity (not secure for production).
+
+- Designed for trusted local environments and learning/demo purposes.
+
+Enjoy your local chat! 🚀
+
+### Screenshot
+
+
