@@ -101,4 +101,5 @@ Enjoy your local chat! 🚀
 
 ### Screenshot
 
+<img width="1899" height="1026" alt="2026-03-04-171423_hyprshot" src="https://github.com/user-attachments/assets/20a7ecb9-de3e-4a40-baf0-4412e4ab078b" />
 
