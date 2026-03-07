@@ -30,12 +30,12 @@ last_file_name = None
 current_room = None
 
 COLORS = [
-    "\033[96m",
-    "\033[92m",
-    "\033[95m",
-    "\033[94m",
-    "\033[91m",
-]
+        "\033[96m",
+        "\033[92m",
+        "\033[95m",
+        "\033[94m",
+        "\033[91m",
+        ]
 
 RESET = "\033[0m"
 YELLOW = "\033[93m"
@@ -102,10 +102,10 @@ def send(sock):
     sock.sendall(json.dumps({
         "type": "join",
         "user": USERNAME
-    }).encode())
+        }).encode())
 
     while True:
-        msg = input("> ")
+        msg = input()
 
         if msg == "/exit":
             sock.sendall(json.dumps({"type": "exit"}).encode())
@@ -129,13 +129,13 @@ def send(sock):
         elif msg == "/rooms":
             sock.sendall(json.dumps({
                 "type": "list_rooms"
-            }).encode())
+                }).encode())
             continue
 
         elif msg == "/leave":
             sock.sendall(json.dumps({
                 "type": "leave_room"
-            }).encode())
+                }).encode())
             current_room = None
             continue
 
@@ -149,7 +149,7 @@ def send(sock):
                 "type": "join_room",
                 "room": room_name,
                 "password": password
-            }).encode())
+                }).encode())
             continue
 
         # Block talking if not in room
@@ -167,10 +167,10 @@ def send(sock):
                 lines.append(line)
 
             payload = {
-                "type": "code",
-                "user": USERNAME,
-                "content": "\n".join(lines)
-            }
+                    "type": "code",
+                    "user": USERNAME,
+                    "content": "\n".join(lines)
+                    }
 
         elif msg.startswith("/file"):
             path = msg.split(" ", 1)[1]
@@ -182,11 +182,11 @@ def send(sock):
                 encoded = base64.b64encode(f.read()).decode()
 
             payload = {
-                "type": "file",
-                "user": USERNAME,
-                "filename": os.path.basename(path),
-                "content": encoded
-            }
+                    "type": "file",
+                    "user": USERNAME,
+                    "filename": os.path.basename(path),
+                    "content": encoded
+                    }
 
         elif msg.startswith("/folder"):
             path = msg.split(" ", 1)[1]
@@ -206,18 +206,18 @@ def send(sock):
             os.remove(zip_name)
 
             payload = {
-                "type": "file",
-                "user": USERNAME,
-                "filename": os.path.basename(path) + ".zip",
-                "content": encoded
-            }
+                    "type": "file",
+                    "user": USERNAME,
+                    "filename": os.path.basename(path) + ".zip",
+                    "content": encoded
+                    }
 
         else:
             payload = {
-                "type": "chat",
-                "user": USERNAME,
-                "content": msg
-            }
+                    "type": "chat",
+                    "user": USERNAME,
+                    "content": msg
+                    }
 
         sock.sendall(json.dumps(payload).encode())
 
